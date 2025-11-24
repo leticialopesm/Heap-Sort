@@ -43,11 +43,9 @@ class HeapSort:
         """Sort array using heap sort algorithm."""
         n = len(arr)
         
-        # Build max heap
         for i in range(n // 2 - 1, -1, -1):
             self.heapify(arr, n, i)
 
-        # Extract elements one by one
         for i in range(n - 1, 0, -1):
             arr[0], arr[i] = arr[i], arr[0]
             self.swaps += 1
@@ -59,13 +57,10 @@ class HeapSort:
 def generate_test_data(n: int, case: str) -> List[int]:
     """Generate test data for specified case type."""
     if case == 'best':
-        # Best case: ascending order (already sorted)
         return list(range(n))
     elif case == 'worst':
-        # Worst case: descending order
         return list(range(n, 0, -1))
     else:
-        # Average case: random data
         return [random.randint(0, n * 10) for _ in range(n)]
 
 
@@ -138,7 +133,6 @@ def main() -> None:
     cases = ['best', 'average', 'worst']
     repetitions = 20
 
-    # ✅ garante que a pasta ../results exista
     output_dir = os.path.join(os.path.dirname(__file__), "../results")
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "heap_sort_results_python.csv")
@@ -146,7 +140,7 @@ def main() -> None:
     results = benchmark_heap_sort(sizes, cases, repetitions=repetitions)
     save_results_to_csv(results, output_file)
     
-    print(f"✅ Python benchmarking finished. Results saved to {output_file}")
+    print(f"Python benchmarking finished. Results saved to {output_file}")
 
 
 if __name__ == '__main__':
